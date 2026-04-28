@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora d'Estalvi Energètic — ITB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="badge">TA08 · ASIXc1A · ITB 2025–26</div>
+        <h1>Calculadora<br><span>d'Estalvi Energètic</span></h1>
+        <p class="subtitle">Eina de visualització i predicció del consum del centre — basada en dades reals ITB Leaks</p>
+        <div class="authors">Max Mateo &amp; Sorin Nicoara</div>
+      </div>
+      <div class="header-right">
+        <div class="kpi-grid">
+          <div class="kpi">
+            <span class="kpi-val" id="kpi-electric">234.341</span>
+            <span class="kpi-label">kWh/any · Electricitat</span>
+          </div>
+          <div class="kpi">
+            <span class="kpi-val" id="kpi-water">2.360</span>
+            <span class="kpi-label">m³/any · Aigua</span>
+          </div>
+          <div class="kpi">
+            <span class="kpi-val" id="kpi-supplies">800</span>
+            <span class="kpi-label">€/any · Consumibles</span>
+          </div>
+          <div class="kpi">
+            <span class="kpi-val" id="kpi-cleaning">1.200</span>
+            <span class="kpi-label">€/any · Neteja</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAV TABS -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="electricitat">⚡ Electricitat</button>
+    <button class="tab-btn" data-tab="aigua">💧 Aigua</button>
+    <button class="tab-btn" data-tab="consumibles">📄 Consumibles</button>
+    <button class="tab-btn" data-tab="neteja">🧹 Neteja</button>
+    <button class="tab-btn" data-tab="pla">🎯 Pla -30%</button>
+  </nav>
+
+  <main>
+
+    <!-- ══════════════════════════════════
+         TAB: ELECTRICITAT
+    ══════════════════════════════════ -->
+    <section class="tab-panel active" id="tab-electricitat">
+      <div class="panel-header">
+        <div>
+          <h2>Consum Elèctric</h2>
+          <p>Predicció basada en 234.341 kWh anuals amb variació estacional</p>
+        </div>
+        <div class="controls">
+          <label class="toggle-label">
+            Mostrar amb millores
+            <input type="checkbox" id="toggle-electric" class="improvement-toggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="calc-grid">
+        <!-- CÀLCUL 1 -->
+        <div class="calc-card">
+          <div class="calc-num">01</div>
+          <h3>Consum elèctric pròxim any</h3>
+          <div class="calc-result">
+            <span class="result-val" id="c1-val">234.341</span>
+            <span class="result-unit">kWh</span>
+          </div>
+          <div class="calc-detail" id="c1-detail">
+            Basat en l'any anterior. Tendència: +2% hivern, -15% estiu (centre tancat).
+          </div>
+          <div class="calc-saving hidden" id="c1-saving">
+            🌱 Amb millores: <strong id="c1-save-val">164.039</strong> kWh (-30%)
+          </div>
+        </div>
+
+        <!-- CÀLCUL 2 -->
+        <div class="calc-card">
+          <div class="calc-num">02</div>
+          <h3>Consum curs lectiu (Set–Jun)</h3>
+          <div class="calc-result">
+            <span class="result-val" id="c2-val">199.190</span>
+            <span class="result-unit">kWh</span>
+          </div>
+          <div class="calc-detail" id="c2-detail">
+            10 mesos lectius. Exclou juliol i agost (reducció ~85%).
+          </div>
+          <div class="calc-saving hidden" id="c2-saving">
+            🌱 Amb millores: <strong id="c2-save-val">139.433</strong> kWh (-30%)
+          </div>
+        </div>
+      </div>
+
+      <!-- GRÀFIC ELÈCTRIC -->
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3>Evolució mensual del consum elèctric</h3>
+          <div class="chart-legend">
+            <span class="leg-dot" style="background:#00e676"></span> Any actual
+            <span class="leg-dot" style="background:#ff6b35; margin-left:1rem"></span> Amb millores (-30%)
+          </div>
+        </div>
+        <canvas id="chart-electric" height="100"></canvas>
+      </div>
+
+      <!-- ESTRATÈGIES -->
+      <div class="strategies-grid">
+        <div class="strategy-card">
+          <div class="s-icon">💡</div>
+          <h4>Sensors de presència</h4>
+          <p>Instal·lar sensors en aules i lavabos. Estalvi estimat: <strong>15%</strong> del consum d'il·luminació.</p>
+          <div class="s-saving">Estalvi: ~8.400 kWh/any</div>
+        </div>
+        <div class="strategy-card">
+          <div class="s-icon">🌡️</div>
+          <h4>Climatització +2°C</h4>
+          <p>Pujar 2°C el termòstat a l'estiu. Estalvi estimat: <strong>10%</strong> del consum de climatització.</p>
+          <div class="s-saving">Estalvi: ~6.200 kWh/any</div>
+        </div>
+        <div class="strategy-card">
+          <div class="s-icon">⚙️</div>
+          <h4>Mode estalvi PCs</h4>
+          <p>Hibernació als 10 min i apagada automàtica. Elimina consum fantasma nocturn (1,5 kWh/nit/aula).</p>
+          <div class="s-saving">Estalvi: ~5.400 kWh/any</div>
+        </div>
+        <div class="strategy-card">
+          <div class="s-icon">☀️</div>
+          <h4>Plaques fotovoltaiques</h4>
+          <p>Incrementar autoconsum del 15% al 30%. Producció estimada addicional: 35.151 kWh/any.</p>
+          <div class="s-saving">Estalvi: ~35.151 kWh/any</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         TAB: AIGUA
+    ══════════════════════════════════ -->
+    <section class="tab-panel" id="tab-aigua">
+      <div class="panel-header">
+        <div>
+          <h2>Consum d'Aigua</h2>
+          <p>Predicció basada en lectures horàries reals del comptador (febrer 2026)</p>
+        </div>
+        <div class="controls">
+          <label class="toggle-label">
+            Mostrar amb millores
+            <input type="checkbox" id="toggle-water" class="improvement-toggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="calc-grid">
+        <!-- CÀLCUL 3 -->
+        <div class="calc-card">
+          <div class="calc-num">03</div>
+          <h3>Consum d'aigua pròxim any</h3>
+          <div class="calc-result">
+            <span class="result-val" id="c3-val">2.360</span>
+            <span class="result-unit">m³</span>
+          </div>
+          <div class="calc-detail">
+            Basat en 8.100 L/dia lectiu · 180 dies · més cap de setmana. Pic a la primavera per reg.
+          </div>
+          <div class="calc-saving hidden" id="c3-saving">
+            🌱 Amb millores: <strong id="c3-save-val">1.652</strong> m³ (-30%)
+          </div>
+        </div>
+
+        <!-- CÀLCUL 4 -->
+        <div class="calc-card">
+          <div class="calc-num">04</div>
+          <h3>Consum curs lectiu (Set–Jun)</h3>
+          <div class="calc-result">
+            <span class="result-val" id="c4-val">1.944</span>
+            <span class="result-unit">m³</span>
+          </div>
+          <div class="calc-detail">
+            Durant els 10 mesos lectius. Inclou pics d'activitat al matí (10h–15h).
+          </div>
+          <div class="calc-saving hidden" id="c4-saving">
+            🌱 Amb millores: <strong id="c4-save-val">1.361</strong> m³ (-30%)
+          </div>
+        </div>
+      </div>
+
+      <!-- GRÀFIC HORARI (dades reals) -->
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3>Consum horari real — 28/02/2026 (dia lectiu)</h3>
+          <div class="chart-legend">
+            <span class="leg-dot" style="background:#29b6f6"></span> Litres per hora (dades reals ITB Leaks)
+          </div>
+        </div>
+        <canvas id="chart-water-hourly" height="100"></canvas>
+      </div>
+
+      <!-- GRÀFIC MENSUAL -->
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3>Predicció mensual de consum d'aigua</h3>
+        </div>
+        <canvas id="chart-water-monthly" height="100"></canvas>
+      </div>
+
+      <div class="strategies-grid">
+        <div class="strategy-card">
+          <div class="s-icon">🚿</div>
+          <h4>Airejadors i reductors de cabal</h4>
+          <p>Instal·lar reductors de cabal en aixetes. Estalvi immediat del <strong>30–40%</strong> del consum als lavabos.</p>
+          <div class="s-saving">Estalvi: ~700 m³/any</div>
+        </div>
+        <div class="strategy-card">
+          <div class="s-icon">🌧️</div>
+          <h4>Aprofitament d'aigua pluvial</h4>
+          <p>Recollida d'aigüa de pluja per al reg del jardí i patis. Barcelona: ~650 mm/any de pluja.</p>
+          <div class="s-saving">Estalvi: ~200 m³/any</div>
+        </div>
+        <div class="strategy-card">
+          <div class="s-icon">⏱️</div>
+          <h4>Temporitzadors en lavabos</h4>
+          <p>Grifos temporitzats de 8 segons. Redueix el consum per ús i elimina grifos oberts accidentalment.</p>
+          <div class="s-saving">Estalvi: ~350 m³/any</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         TAB: CONSUMIBLES
+    ══════════════════════════════════ -->
+    <section class="tab-panel" id="tab-consumibles">
+      <div class="panel-header">
+        <div>
+          <h2>Consumibles d'Oficina</h2>
+          <p>Paper, retoladors de pissarra, borradors — dades reals de factures Lyreco 2026</p>
+        </div>
+        <div class="controls">
+          <label class="toggle-label">
+            Mostrar amb millores
+            <input type="checkbox" id="toggle-supplies" class="improvement-toggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="calc-grid">
+        <!-- CÀLCUL 5 -->
+        <div class="calc-card">
+          <div class="calc-num">05</div>
+          <h3>Consum consumibles pròxim any</h3>
+          <div class="calc-result">
+            <span class="result-val" id="c5-val">800</span>
+            <span class="result-unit">€</span>
+          </div>
+          <div class="calc-detail">
+            Basats en 665,83€ nets (factures ABR–NOV 2026). Extrapolació anual +20% per mesos no registrats.
+          </div>
+          <div class="calc-saving hidden" id="c5-saving">
+            🌱 Amb millores: <strong id="c5-save-val">560</strong> € (-30%)
+          </div>
+        </div>
+
+        <!-- CÀLCUL 6 -->
+        <div class="calc-card">
+          <div class="calc-num">06</div>
+          <h3>Consum curs lectiu (Set–Jun)</h3>
+          <div class="calc-result">
+            <span class="result-val" id="c6-val">700</span>
+            <span class="result-unit">€</span>
+          </div>
+          <div class="calc-detail">
+            87,5% del consum anual es concentra en mesos lectius. Pic al setembre (inici de curs).
+          </div>
+          <div class="calc-saving hidden" id="c6-saving">
+            🌱 Amb millores: <strong id="c6-save-val">490</strong> € (-30%)
+          </div>
+        </div>
+      </div>
+
+      <!-- GRÀFIC CONSUMIBLES -->
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3>Distribució mensual de la despesa en consumibles</h3>
+        </div>
+        <canvas id="chart-supplies" height="110"></canvas>
+      </div>
+
+      <!-- DESGLOS FACTURES -->
+      <div class="data-table-container">
+        <h3>Dades reals — Factures ITB Leaks 2026</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Data</th><th>Article</th><th>Quantitat</th><th>Preu unit.</th><th>Import net</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>30/04/2024</td><td>500H Papel Navigator A4 80g</td><td>15 resmes</td><td>5,34 €</td><td>80,10 €</td></tr>
+            <tr><td>30/04/2024</td><td>Marcadors pissarra BEGREEN (verd/vermell/negre/blau)</td><td>115 ud.</td><td>0,89 €</td><td>102,35 €</td></tr>
+            <tr><td>30/04/2024</td><td>Borrador no magnètic Faibo</td><td>6 ud.</td><td>6,83 €</td><td>40,98 €</td></tr>
+            <tr><td>31/05/2024</td><td>500H Papel Navigator A4 80g</td><td>30 resmes</td><td>5,34 €</td><td>160,20 €</td></tr>
+            <tr><td>31/05/2024</td><td>Recambios marcador pissarra (verd/blau)</td><td>70 ud.</td><td>0,81 €</td><td>55,70 €</td></tr>
+            <tr><td>31/10/2024</td><td>500H Papel Navigator A4 80g</td><td>30 resmes</td><td>5,47 €</td><td>164,10 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="strategies-grid">
+        <div class="strategy-card">
+          <div class="s-icon">📱</div>
+          <h4>Digitalització d'apunts</h4>
+          <p>Substituir el 50% dels apunts en paper per formats digitals. CO₂ estalviat: ~200 kg/any.</p>
+          <div class="s-saving">Estalvi: ~240 €/any</div>
+        </div>
+        <div class="strategy-card">
+          <div class="s-icon">🖊️</div>
+          <h4>Retoladors reutilitzables</h4>
+          <p>Els marcadors BEGREEN ja són retoladors amb tinta reciclada (67%). Prioritzar recambis vs. unitats noves.</p>
+          <div class="s-saving">Estalvi: ~80 €/any</div>
+        </div>
+        <div class="strategy-card">
+          <div class="s-icon">🖨️</div>
+          <h4>Impressió a doble cara</h4>
+          <p>Configurar totes les impressores per defecte a doble cara. Redueix el consum de paper fins al 40%.</p>
+          <div class="s-saving">Estalvi: ~120 €/any</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         TAB: NETEJA
+    ══════════════════════════════════ -->
+    <section class="tab-panel" id="tab-neteja">
+      <div class="panel-header">
+        <div>
+          <h2>Productes de Neteja i Higiene</h2>
+          <p>Paper WC, paper de mans, bosses, sabó — dades reals de factures 2026</p>
+        </div>
+        <div class="controls">
+          <label class="toggle-label">
+            Mostrar amb millores
+            <input type="checkbox" id="toggle-cleaning" class="improvement-toggle">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div class="calc-grid">
+        <!-- CÀLCUL 7 -->
+        <div class="calc-card">
+          <div class="calc-num">07</div>
+          <h3>Consum productes neteja pròxim any</h3>
+          <div class="calc-result">
+            <span class="result-val" id="c7-val">1.200</span>
+            <span class="result-unit">€</span>
+          </div>
+          <div class="calc-detail">
+            Basats en 995,85€ nets (factures MAI–JUN 2025). Extrapolació anual amb estacionalitat.
+          </div>
+          <div class="calc-saving hidden" id="c7-saving">
+            🌱 Amb millores: <strong id="c7-save-val">840</strong> € (-30%)
+          </div>
+        </div>
+
+        <!-- CÀLCUL 8 -->
+        <div class="calc-card">
+          <div class="calc-num">08</div>
+          <h3>Consum curs lectiu (Set–Jun)</h3>
+          <div class="calc-result">
+            <span class="result-val" id="c8-val">1.050</span>
+            <span class="result-unit">€</span>
+          </div>
+          <div class="calc-detail">
+            87,5% del consum es concentra en mesos lectius (major afluència d'alumnes i personal).
+          </div>
+          <div class="calc-saving hidden" id="c8-saving">
+            🌱 Amb millores: <strong id="c8-save-val">735</strong> € (-30%)
+          </div>
+        </div>
+      </div>
+
+      <!-- GRÀFIC NETEJA -->
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3>Distribució mensual de despesa en neteja</h3>
+        </div>
+        <canvas id="chart-cleaning" height="110"></canvas>
+      </div>
+
+      <!-- DESGLOS -->
+      <div class="data-table-container">
+        <h3>Dades reals — Factura neteja ITB Leaks (20/06/2026)</h3>
+        <table class="data-table">
+          <thead>
+            <tr><th>Article</th><th>Quantitat</th><th>Preu unit.</th><th>Import</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Fardos paper secamans (18,25€/fardo)</td><td>10 fardos</td><td>18,25 €</td><td>182,50 €</td></tr>
+            <tr><td>Fardos paper WC industrial (25,67€/fardo)</td><td>10 fardos</td><td>25,67 €</td><td>256,70 €</td></tr>
+            <tr><td>Fardos paper secamans metxa</td><td>5 fardos</td><td>18,25 €</td><td>91,25 €</td></tr>
+            <tr><td>Sacs industrials (1,51€/sac)</td><td>20 sacs</td><td>1,51 €</td><td>30,20 €</td></tr>
+            <tr><td>Bosses escombraries petites (1,13€/bossa)</td><td>30 bosses</td><td>1,13 €</td><td>33,90 €</td></tr>
+            <tr><td>Garrafes sabó mans 5L (8,50€/garrafa)</td><td>3 garrafes</td><td>8,50 €</td><td>25,50 €</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="strategies-grid">
+        <div class="strategy-card">
+          <div class="s-icon">🌿</div>
+          <h4>Ozó aquós per a la neteja</h4>
+          <p>Substituir productes de neteja químics per ozó aquós. Igual d'efectiu, zero residus químics, -40% cost.</p>
+          <div class="s-saving">Estalvi: ~480 €/any</div>
+        </div>
+        <div class="strategy-card">
+          <div class="s-icon">🧻</div>
+          <h4>Paper reciclat certificat</h4>
+          <p>Substituir paper WC i de mans per paper 100% reciclat certificat FSC. Preu similar, impacte molt menor.</p>
+          <div class="s-saving">Estalvi: CO₂ ~150 kg/any</div>
+        </div>
+        <div class="strategy-card">
+          <div class="s-icon">🪣</div>
+          <h4>Dispensadors de sabó amb recàrrega</h4>
+          <p>Substituir garrafes de plàstic per dispensadors de recàrrega. Reducció de residus plàstic del 70%.</p>
+          <div class="s-saving">Estalvi: ~60 €/any</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════
+         TAB: PLA -30%
+    ══════════════════════════════════ -->
+    <section class="tab-panel" id="tab-pla">
+      <div class="panel-header">
+        <div>
+          <h2>Pla de Reducció del 30% en 3 anys</h2>
+          <p>Objectius mesurables, accions concretes i cronograma fins al 2028</p>
+        </div>
+      </div>
+
+      <!-- RESUM RECÀLCUL -->
+      <div class="recalc-banner">
+        <h3>📊 Recàlcul amb les millores proposades</h3>
+        <div class="recalc-grid">
+          <div class="recalc-item">
+            <span class="recalc-label">Electricitat</span>
+            <div class="recalc-bar-track">
+              <div class="recalc-bar" style="width:70%; background:#00e676;"></div>
+            </div>
+            <div class="recalc-vals">
+              <span class="old">234.341 kWh</span>
+              <span class="arrow">→</span>
+              <span class="new">164.039 kWh</span>
+              <span class="pct">-30%</span>
+            </div>
+          </div>
+          <div class="recalc-item">
+            <span class="recalc-label">Aigua</span>
+            <div class="recalc-bar-track">
+              <div class="recalc-bar" style="width:70%; background:#29b6f6;"></div>
+            </div>
+            <div class="recalc-vals">
+              <span class="old">2.360 m³</span>
+              <span class="arrow">→</span>
+              <span class="new">1.652 m³</span>
+              <span class="pct">-30%</span>
+            </div>
+          </div>
+          <div class="recalc-item">
+            <span class="recalc-label">Consumibles</span>
+            <div class="recalc-bar-track">
+              <div class="recalc-bar" style="width:70%; background:#ffca28;"></div>
+            </div>
+            <div class="recalc-vals">
+              <span class="old">800 €</span>
+              <span class="arrow">→</span>
+              <span class="new">560 €</span>
+              <span class="pct">-30%</span>
+            </div>
+          </div>
+          <div class="recalc-item">
+            <span class="recalc-label">Neteja</span>
+            <div class="recalc-bar-track">
+              <div class="recalc-bar" style="width:70%; background:#ff7043;"></div>
+            </div>
+            <div class="recalc-vals">
+              <span class="old">1.200 €</span>
+              <span class="arrow">→</span>
+              <span class="new">840 €</span>
+              <span class="pct">-30%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRÀFIC PROJECCIÓ 3 ANYS -->
+      <div class="chart-container">
+        <div class="chart-header">
+          <h3>Projecció de reducció elèctrica a 3 anys</h3>
+          <p style="color:#aaa; font-size:0.8rem;">Formula: Consum_futur = Consum_actual × (1 − 0,112)^t</p>
+        </div>
+        <canvas id="chart-projection" height="100"></canvas>
+      </div>
+
+      <!-- CRONOGRAMA -->
+      <div class="timeline">
+        <h3 style="margin-bottom:2rem;">Cronograma d'accions — 2025 a 2028</h3>
+
+        <div class="timeline-year">
+          <div class="year-label">Any 1<br><span>2025–2026</span></div>
+          <div class="timeline-actions">
+            <div class="t-action electric">
+              <span class="t-icon">💡</span>
+              <div>
+                <strong>Sensors de presència a totes les aules</strong>
+                <p>Cost inversió: ~4.000€. Estalvi anual: 8.400 kWh = ~1.200€/any. ROI: 3,3 anys.</p>
+              </div>
+            </div>
+            <div class="t-action water">
+              <span class="t-icon">🚿</span>
+              <div>
+                <strong>Airejadors i temporitzadors en lavabos</strong>
+                <p>Cost inversió: ~800€. Estalvi anual: 700 m³. ROI immediat.</p>
+              </div>
+            </div>
+            <div class="t-action supplies">
+              <span class="t-icon">📱</span>
+              <div>
+                <strong>Pla de digitalització parcial d'apunts</strong>
+                <p>Reducció del 50% dels fotocòpies. Formació del professorat en eines digitals.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-year">
+          <div class="year-label">Any 2<br><span>2026–2027</span></div>
+          <div class="timeline-actions">
+            <div class="t-action electric">
+              <span class="t-icon">☀️</span>
+              <div>
+                <strong>Ampliació plaques fotovoltaiques</strong>
+                <p>Incrementar autoconsum del 15% al 30%. Producció addicional: 35.151 kWh/any.</p>
+              </div>
+            </div>
+            <div class="t-action electric">
+              <span class="t-icon">🌡️</span>
+              <div>
+                <strong>Política de climatització sostenible</strong>
+                <p>Termòstat màxim 21°C hivern / mínim 26°C estiu. Estalvi: 6.200 kWh/any.</p>
+              </div>
+            </div>
+            <div class="t-action cleaning">
+              <span class="t-icon">🌿</span>
+              <div>
+                <strong>Transició a productes de neteja ecològics</strong>
+                <p>Ozó aquós i productes certificats Ecolabel. Reducció residus químics 80%.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-year">
+          <div class="year-label">Any 3<br><span>2027–2028</span></div>
+          <div class="timeline-actions">
+            <div class="t-action water">
+              <span class="t-icon">🌧️</span>
+              <div>
+                <strong>Sistema de recollida d'aigüa pluvial</strong>
+                <p>Per al reg del jardí i neteja d'exteriors. Reducció 200 m³/any. Economia circular de l'aigua.</p>
+              </div>
+            </div>
+            <div class="t-action supplies">
+              <span class="t-icon">♻️</span>
+              <div>
+                <strong>Pla de segona vida per als equips informàtics</strong>
+                <p>Protocol de reparació i donació d'equips obsolets. Reducció RAEE 60%.</p>
+              </div>
+            </div>
+            <div class="t-action electric">
+              <span class="t-icon">📊</span>
+              <div>
+                <strong>Auditoria energètica completa i certificació</strong>
+                <p>Auditoria professional per validar els estalvis reals i obtenir certificació ISO 50001.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INDICADORS -->
+      <div class="indicators-grid">
+        <h3 style="grid-column: 1 / -1; margin-bottom:0.5rem;">Indicadors de seguiment</h3>
+        <div class="ind-card">
+          <div class="ind-icon">⚡</div>
+          <div class="ind-name">kWh/alumne/dia</div>
+          <div class="ind-current">Actual: 1,30</div>
+          <div class="ind-target">Objectiu 2028: 0,91</div>
+        </div>
+        <div class="ind-card">
+          <div class="ind-icon">💧</div>
+          <div class="ind-name">Litres/alumne/dia</div>
+          <div class="ind-current">Actual: 45 L</div>
+          <div class="ind-target">Objectiu 2028: 31,5 L</div>
+        </div>
+        <div class="ind-card">
+          <div class="ind-icon">📄</div>
+          <div class="ind-name">€ consumibles/alumne</div>
+          <div class="ind-current">Actual: 2,22 €</div>
+          <div class="ind-target">Objectiu 2028: 1,55 €</div>
+        </div>
+        <div class="ind-card">
+          <div class="ind-icon">🌱</div>
+          <div class="ind-name">kg CO₂ estalviats/any</div>
+          <div class="ind-current">Any 1: ~14.000</div>
+          <div class="ind-target">Any 3: ~42.000</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong>Calculadora d'Estalvi Energètic — ITB</strong><br>
+        TA08 · Grup ASIXc1A · Max Mateo &amp; Sorin Nicoara · 2025–2026
+      </div>
+      <div class="footer-right">
+        Dades basades en <strong>ITB Leaks</strong> (factures i lectures de comptador reals)<br>
+        Fórmula de projecció: C_futur = C_actual × (1 − 0,112)^t
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
